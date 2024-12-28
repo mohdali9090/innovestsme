@@ -1,0 +1,194 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>محفظة مأمون الاستثمارية</title>
+  <style>
+    /* تنسيق عام */
+    body {
+      font-family: "Tajawal", sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
+      color: #333;
+    }
+
+    /* شريط التنقل */
+    nav {
+      background: #0284c7;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 1rem;
+    }
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem;
+    }
+    nav ul li a:hover {
+      background: #0369a1;
+      border-radius: 5px;
+    }
+
+    /* الأقسام */
+    section {
+      padding: 2rem;
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      margin-top: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      color: #0284c7;
+      margin-bottom: 1rem;
+    }
+
+    /* لوحة الإحصائيات */
+    .stats {
+      display: flex;
+      gap: 1rem;
+      justify-content: space-between;
+    }
+    .stat {
+      background: #f1f5f9;
+      padding: 1rem;
+      border-radius: 6px;
+      text-align: center;
+      flex: 1;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+    .stat h3 {
+      color: #334155;
+    }
+
+    /* الحاسبة */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    input {
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      padding: 0.7rem;
+      background: #0284c7;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #0369a1;
+    }
+
+    /* النتائج */
+    #result {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: #e0f7fa;
+      border-radius: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- شريط التنقل -->
+  <nav>
+    <h1>محفظة مأمون الاستثمارية</h1>
+    <ul>
+      <li><a href="#home">الرئيسية</a></li>
+      <li><a href="#dashboard">لوحة المعلومات</a></li>
+      <li><a href="#calculator">حاسبة العوائد</a></li>
+      <li><a href="#resources">الموارد</a></li>
+    </ul>
+  </nav>
+
+  <!-- القسم الأول: الرئيسية -->
+  <section id="home">
+    <h2>مرحبًا بكم في المحفظة الاستثمارية</h2>
+    <p>استثمر بسهولة عبر منصة مأمون واستفد من عوائد مضمونة.</p>
+    <button>سجل الآن</button>
+  </section>
+
+  <!-- القسم الثاني: لوحة المعلومات -->
+  <section id="dashboard">
+    <h2>لوحة معلوماتك</h2>
+    <div class="stats">
+      <div class="stat">
+        <h3>إجمالي الاستثمار</h3>
+        <p>5000 ر.ع</p>
+      </div>
+      <div class="stat">
+        <h3>العوائد المحققة</h3>
+        <p>250 ر.ع</p>
+      </div>
+      <div class="stat">
+        <h3>المشاريع النشطة</h3>
+        <p>3</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- القسم الثالث: الحاسبة -->
+  <section id="calculator">
+    <h2>حاسبة العوائد</h2>
+    <form>
+      <label for="investment">مبلغ الاستثمار (ر.ع):</label>
+      <input type="number" id="investment" placeholder="أدخل المبلغ">
+
+      <label for="rate">نسبة العائد السنوي (%):</label>
+      <input type="number" id="rate" placeholder="أدخل النسبة">
+
+      <label for="years">مدة الاستثمار (بالسنوات):</label>
+      <input type="number" id="years" placeholder="أدخل المدة">
+
+      <button type="button" id="calculate">احسب العائد</button>
+    </form>
+    <div id="result">
+      <h3>النتائج:</h3>
+      <p>العوائد المتوقعة: <span id="profit"></span> ر.ع</p>
+    </div>
+  </section>
+
+  <!-- القسم الرابع: الموارد -->
+  <section id="resources">
+    <h2>موارد تعليمية</h2>
+    <ul>
+      <li><a href="#">ورشة الاستثمار الأولية</a></li>
+      <li><a href="#">كيفية إدارة المخاطر</a></li>
+      <li><a href="#">مبادئ التمويل الجماعي</a></li>
+    </ul>
+  </section>
+
+  <script>
+    // الحاسبة
+    document.getElementById("calculate").addEventListener("click", () => {
+      const investment = parseFloat(document.getElementById("investment").value);
+      const rate = parseFloat(document.getElementById("rate").value);
+      const years = parseFloat(document.getElementById("years").value);
+
+      if (investment && rate && years) {
+        const profit = investment * (rate / 100) * years;
+        document.getElementById("profit").textContent = profit.toFixed(2);
+        document.getElementById("result").style.display = "block";
+      } else {
+        alert("يرجى إدخال جميع القيم المطلوبة.");
+      }
+    });
+  </script>
+</body>
+</html>
